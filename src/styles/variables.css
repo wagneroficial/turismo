@@ -1,0 +1,21 @@
+:root {
+  --green-900: #0b2e22;
+  --green-800: #123d2e;
+  --green-700: #1a4d3a;
+  --green-600: #2f6b4f;
+  --green-200: #cfe3c8;
+  --green-100: #e3eed9;
+  --cream: #f4f0e4;
+  --cream-dark: #ebe6d3;
+  --text: #1c1c1c;
+  --text-light: #f4f0e4;
+  --accent: #d9a441;
+
+  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
+  --font-title: 'Playfair Display', Georgia, serif;
+
+  --radius: 16px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  --container: 1200px;
+}
