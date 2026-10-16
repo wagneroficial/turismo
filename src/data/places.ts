@@ -21,16 +21,16 @@ export const places: Place[] = [
       'Vista para o rio',
       'Eventos culturais e religiosos',
     ],
-    coordinates: { lat: -1.7656, lng: -55.8661 },
-    heroImage: '/images/praca-da-matriz/hero.jpg',
+    coordinates: { lat: -1.767456, lng: -55.868117},
+    heroImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6XJ7RLrnFBgHahGdmF00o6keVlF5dvhT_g_saANhLA&s=10',
     gallery: [
       {
-        src: '/images/praca-da-matriz/principal.jpg',
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6XJ7RLrnFBgHahGdmF00o6keVlF5dvhT_g_saANhLA&s=10',
         alt: 'Vista da Praça da Matriz com a igreja ao fundo',
         caption: 'Praça da Matriz',
       },
       {
-        src: '/images/praca-da-matriz/igreja.jpg',
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6XJ7RLrnFBgHahGdmF00o6keVlF5dvhT_g_saANhLA&s=10',
         alt: 'Fachada da Igreja Matriz',
         caption: 'Igreja Matriz',
       },
