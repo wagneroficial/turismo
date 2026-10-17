@@ -59,10 +59,10 @@ export const places: Place[] = [
     hours: 'Aberto todos os dias',
     highlights: ['Igreja Matriz', 'Área de lazer', 'Vista para o rio', 'Eventos culturais e religiosos'],
     coordinates: { lat: -1.7656, lng: -55.8661 },
-    heroImage: '/images/praca-da-matriz/hero.jpg',
+    heroImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-OP2kRiS-HMkzEvVVaf7JIvDumcGSZAdyTHifgGm5Mw&s=10',
     gallery: [
       {
-        src: '/images/praca-da-matriz/principal.jpg',
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkdHj1qMORQ_5HrU15A-HsBark-XcgOe657tkA3KpgBQ&s=10',
         alt: 'Vista da Praça da Matriz com a igreja ao fundo',
         caption: 'Praça da Matriz',
       },
