@@ -3,21 +3,23 @@ import Button from '../ui/Button'
 import type { Place } from '../../types/place'
 
 export default function PlaceMapCard({ place }: { place: Place }) {
-  const { lat, lng } = place.coordinates
-  const bbox = `${lng - 0.006},${lat - 0.004},${lng + 0.006},${lat + 0.004}`
-  const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lng}`
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+  const { coordinates } = place
+
+  const mapsUrl = coordinates
+    ? `https://www.google.com/maps/search/?api=1&query=${coordinates.lat},${coordinates.lng}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name}, Oriximiná, PA`)}`
+
+  const embedUrl = coordinates
+    ? `https://www.openstreetmap.org/export/embed.html?bbox=${coordinates.lng - 0.006},${coordinates.lat - 0.004},${coordinates.lng + 0.006},${coordinates.lat + 0.004}&layer=mapnik&marker=${coordinates.lat},${coordinates.lng}`
+    : null
 
   return (
     <aside className="map-card">
       <SectionTitle icon="📍">Localização</SectionTitle>
 
-      <iframe
-        className="map-card__map"
-        title={`Mapa de ${place.name}`}
-        src={embedUrl}
-        loading="lazy"
-      />
+      {embedUrl && (
+        <iframe className="map-card__map" title={`Mapa de ${place.name}`} src={embedUrl} loading="lazy" />
+      )}
 
       <ul className="map-card__info">
         <li>
@@ -46,6 +48,10 @@ export default function PlaceMapCard({ place }: { place: Place }) {
           </div>
         </li>
       </ul>
+
+      {place.precisaConfirmar && (
+        <p className="notice">⚠️ Algumas informações ainda estão sendo confirmadas.</p>
+      )}
 
       <Button href={mapsUrl}>📍 Ver no mapa</Button>
     </aside>

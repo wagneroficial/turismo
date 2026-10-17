@@ -1,7 +1,10 @@
 import Breadcrumb from '../ui/Breadcrumb'
+import { categories } from '../../data/places'
 import type { Place } from '../../types/place'
 
 export default function PlaceHero({ place }: { place: Place }) {
+  const categoria = categories[place.category]
+
   return (
     <section
       className="place-hero"
@@ -12,14 +15,14 @@ export default function PlaceHero({ place }: { place: Place }) {
         <Breadcrumb
           items={[
             { label: 'Início', to: '/' },
-            { label: 'Praças', to: '/pracas' },
+            { label: categoria.label, to: categoria.path },
             { label: place.name },
           ]}
         />
         <h1 className="place-hero__title">{place.name}</h1>
         <p className="place-hero__tagline">{place.tagline}</p>
       </div>
-      <span className="place-hero__note hand">{place.handwritten} ♡</span>
+      {place.handwritten && <span className="place-hero__note hand">{place.handwritten} ♡</span>}
     </section>
   )
 }

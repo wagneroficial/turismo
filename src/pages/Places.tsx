@@ -1,34 +1,56 @@
 import { Link } from 'react-router-dom'
-import { getPlacesByCategory } from '../data/places'
+import PageHeader from '../components/ui/PageHeader'
+import PlaceCard from '../components/place/PlaceCard'
+import { categories, getPlacesByCategory, places } from '../data/places'
 import type { PlaceCategory } from '../types/place'
 
 interface PlacesProps {
-  category: PlaceCategory
-  title: string
+  category?: PlaceCategory
 }
 
-export default function Places({ category, title }: PlacesProps) {
-  const items = getPlacesByCategory(category)
+export default function Places({ category }: PlacesProps) {
+  const info = category ? categories[category] : undefined
+  const lista = category ? getPlacesByCategory(category) : places
+  const titulo = info ? info.label : 'Pontos turísticos'
 
   return (
-    <div className="container places-page">
-      <h1 className="places-page__title hand">{title}</h1>
+    <>
+      <PageHeader
+        title={titulo}
+        subtitle={info ? info.description : 'Praças, orla, cachoeiras e natureza de Oriximiná.'}
+        crumbs={
+          info
+            ? [{ label: 'Início', to: '/' }, { label: 'Pontos turísticos', to: '/pontos-turisticos' }, { label: info.label }]
+            : undefined
+        }
+      />
 
-      {items.length === 0 ? (
-        <p>Em breve: novos lugares nesta categoria.</p>
-      ) : (
-        <div className="places-grid">
-          {items.map((place) => (
-            <Link key={place.slug} to={`/pracas/${place.slug}`} className="place-card">
-              <img src={place.gallery[0]?.src} alt={place.name} />
-              <div>
-                <h3>{place.name}</h3>
-                <p>{place.tagline}</p>
-              </div>
+      <section className="section container">
+        <div className="chips" role="navigation" aria-label="Categorias">
+          <Link to="/pontos-turisticos" className={`chip${!category ? ' chip--ativo' : ''}`}>
+            Todos
+          </Link>
+          {(Object.keys(categories) as PlaceCategory[]).map((key) => (
+            <Link
+              key={key}
+              to={categories[key].path}
+              className={`chip${category === key ? ' chip--ativo' : ''}`}
+            >
+              {categories[key].icon} {categories[key].label}
             </Link>
           ))}
         </div>
-      )}
-    </div>
+
+        {lista.length === 0 ? (
+          <p>Em breve: novos lugares nesta categoria.</p>
+        ) : (
+          <div className="grid grid--3">
+            {lista.map((place) => (
+              <PlaceCard key={place.slug} place={place} />
+            ))}
+          </div>
+        )}
+      </section>
+    </>
   )
 }

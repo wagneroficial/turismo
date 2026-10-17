@@ -1,9 +1,10 @@
 import { Link, useParams } from 'react-router-dom'
-import { getPlaceBySlug } from '../data/places'
+import { getPlaceBySlug, getPlacesByCategory } from '../data/places'
 import PlaceHero from '../components/place/PlaceHero'
 import PlaceAbout from '../components/place/PlaceAbout'
 import PlaceGallery from '../components/place/PlaceGallery'
 import PlaceMapCard from '../components/place/PlaceMapCard'
+import PlaceCard from '../components/place/PlaceCard'
 import DidYouKnow from '../components/place/DidYouKnow'
 
 export default function PlaceDetail() {
@@ -14,10 +15,14 @@ export default function PlaceDetail() {
     return (
       <div className="container page-placeholder">
         <h1>Lugar não encontrado</h1>
-        <Link to="/pracas">Voltar para Praças</Link>
+        <Link to="/pontos-turisticos">Voltar para Pontos turísticos</Link>
       </div>
     )
   }
+
+  const outros = getPlacesByCategory(place.category)
+    .filter((p) => p.slug !== place.slug)
+    .slice(0, 3)
 
   return (
     <>
@@ -34,6 +39,19 @@ export default function PlaceDetail() {
       <div className="container">
         <DidYouKnow place={place} />
       </div>
+
+      {outros.length > 0 && (
+        <section className="section section--tint">
+          <div className="container">
+            <h2 className="section__title hand">Continue explorando</h2>
+            <div className="grid grid--3">
+              {outros.map((p) => (
+                <PlaceCard key={p.slug} place={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   )
 }

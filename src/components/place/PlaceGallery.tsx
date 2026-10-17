@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Img from '../ui/Img'
 import type { PlaceImage } from '../../types/place'
 
 export default function PlaceGallery({ images }: { images: PlaceImage[] }) {
@@ -10,7 +11,7 @@ export default function PlaceGallery({ images }: { images: PlaceImage[] }) {
   return (
     <section className="gallery">
       <figure className="gallery__main">
-        <img src={active.src} alt={active.alt} />
+        <Img src={active.src} alt={active.alt} />
         <figcaption>📷 {active.caption}</figcaption>
       </figure>
 
@@ -25,7 +26,7 @@ export default function PlaceGallery({ images }: { images: PlaceImage[] }) {
               onClick={() => setActiveIndex(index)}
               aria-label={`Ver ${image.caption}`}
             >
-              <img src={image.src} alt={image.alt} />
+              <Img src={image.src} alt={image.alt} />
               <span>{image.caption}</span>
             </button>
           )

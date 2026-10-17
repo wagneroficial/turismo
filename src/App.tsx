@@ -1,5 +1,6 @@
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
+import BackToTop from './components/layout/BackToTop'
 import AppRoutes from './routes'
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
         <AppRoutes />
       </main>
       <Footer />
+      <BackToTop />
     </>
   )
 }
